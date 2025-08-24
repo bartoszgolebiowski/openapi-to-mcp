@@ -35,26 +35,31 @@ The `openapi-to-mcp` tool is a command-line application that transforms OpenAPI 
 ## Technology Stack
 
 ### Core Runtime
+
 - **Node.js**: >=18.0.0 (LTS support, modern ES features)
 - **TypeScript**: ^5.0.0 (Latest stable with advanced type features)
 - **pnpm**: Package manager for fast, efficient dependency management
 
 ### CLI Framework
+
 - **Commander.js**: Robust CLI argument parsing and command handling
 - **chalk**: Terminal styling and colored output
 - **ora**: Elegant loading spinners and progress indicators
 
 ### OpenAPI Processing
+
 - **js-yaml**: YAML parsing with TypeScript support
 - **openapi-types**: Official TypeScript definitions for OpenAPI 3.x
 - **ajv**: JSON Schema validation for OpenAPI spec validation
 
 ### Code Generation
+
 - **Handlebars.js**: Template engine for code generation
 - **prettier**: Code formatting for generated output
 - **fs-extra**: Enhanced file system operations
 
 ### Generated Server Stack
+
 - **Express.js**: Web framework for generated REST API servers (NO view engines)
 - **cors**: Cross-origin resource sharing middleware for API access
 - **helmet**: Security middleware for API endpoints
@@ -66,6 +71,7 @@ The `openapi-to-mcp` tool is a command-line application that transforms OpenAPI 
 ## Module Architecture
 
 ### 1. CLI Module (`src/cli/`)
+
 ```typescript
 ├── index.ts              # Main CLI entry point
 ├── commands/
@@ -78,6 +84,7 @@ The `openapi-to-mcp` tool is a command-line application that transforms OpenAPI 
 ```
 
 **Responsibilities:**
+
 - Command-line argument parsing
 - User input validation
 - Progress indication
@@ -85,6 +92,7 @@ The `openapi-to-mcp` tool is a command-line application that transforms OpenAPI 
 - Help documentation
 
 ### 2. Parser Module (`src/parsers/`)
+
 ```typescript
 ├── index.ts              # Parser factory and registry
 ├── openapi/
@@ -98,6 +106,7 @@ The `openapi-to-mcp` tool is a command-line application that transforms OpenAPI 
 ```
 
 **Responsibilities:**
+
 - OpenAPI YAML parsing for REST APIs only
 - Schema validation and normalization
 - REST path and operation extraction (GET, POST, PUT, DELETE, PATCH)
@@ -107,6 +116,7 @@ The `openapi-to-mcp` tool is a command-line application that transforms OpenAPI 
 - Error detection and reporting
 
 ### 3. Generator Module (`src/generators/`)
+
 ```typescript
 ├── index.ts              # Generator orchestrator
 ├── server/
@@ -126,6 +136,7 @@ The `openapi-to-mcp` tool is a command-line application that transforms OpenAPI 
 ```
 
 **Responsibilities:**
+
 - REST API code generation from parsed OpenAPI
 - Template rendering and customization for data endpoints
 - File structure creation for API projects
@@ -134,6 +145,7 @@ The `openapi-to-mcp` tool is a command-line application that transforms OpenAPI 
 - Content-Type header management
 
 ### 4. Template Module (`src/templates/`)
+
 ```typescript
 ├── index.ts              # Template registry and loader
 ├── server/
@@ -152,12 +164,14 @@ The `openapi-to-mcp` tool is a command-line application that transforms OpenAPI 
 ```
 
 **Responsibilities:**
+
 - REST API template storage and organization
 - Handlebars helper functions for data endpoints
 - Template compilation and rendering for JSON/XML responses
 - Partial template management for reusable API components
 
 ### 5. Types Module (`src/types/`)
+
 ```typescript
 ├── index.ts              # Main type exports
 ├── openapi.ts            # OpenAPI-specific types
@@ -167,6 +181,7 @@ The `openapi-to-mcp` tool is a command-line application that transforms OpenAPI 
 ```
 
 **Responsibilities:**
+
 - Type definitions and interfaces
 - Type guards and validation
 - Generic utility types
@@ -175,7 +190,9 @@ The `openapi-to-mcp` tool is a command-line application that transforms OpenAPI 
 ## Design Patterns
 
 ### 1. Factory Pattern
+
 Used for creating parsers and generators based on input type:
+
 ```typescript
 interface ParserFactory {
   createParser(type: 'openapi' | 'swagger'): Parser;
@@ -183,7 +200,9 @@ interface ParserFactory {
 ```
 
 ### 2. Strategy Pattern
+
 Different generation strategies for various server frameworks:
+
 ```typescript
 interface GeneratorStrategy {
   generate(spec: OpenAPISpec, config: GeneratorConfig): GeneratedProject;
@@ -191,7 +210,9 @@ interface GeneratorStrategy {
 ```
 
 ### 3. Template Method Pattern
+
 Code generation process with customizable steps:
+
 ```typescript
 abstract class BaseGenerator {
   generate(spec: OpenAPISpec): void {
@@ -204,7 +225,9 @@ abstract class BaseGenerator {
 ```
 
 ### 4. Observer Pattern
+
 Progress reporting during generation:
+
 ```typescript
 interface ProgressObserver {
   onProgress(step: string, percentage: number): void;
@@ -216,21 +239,25 @@ interface ProgressObserver {
 ## Data Flow
 
 ### 1. Input Processing
+
 ```
 CLI Input → Argument Validation → File Reading → YAML Parsing → REST API Schema Validation → Content-Type Filtering
 ```
 
 ### 2. Analysis Phase
+
 ```
 OpenAPI Spec → REST Path Extraction → Operation Analysis → JSON/XML Schema Analysis → Data Type Inference
 ```
 
 ### 3. Generation Phase
+
 ```
 Analyzed Data → API Template Selection → REST Code Generation → JSON/XML Response Generation → File Writing → Output Validation
 ```
 
 ### 4. Output Structure
+
 ```
 Generated REST API Project → Package Installation → Build Verification → API Runtime Testing
 ```
@@ -238,42 +265,48 @@ Generated REST API Project → Package Installation → Build Verification → A
 ## Error Handling Strategy
 
 ### 1. Error Categories
+
 - **Input Errors**: Invalid files, malformed YAML, missing required fields
 - **Validation Errors**: OpenAPI spec violations, unsupported features
 - **Generation Errors**: Template errors, file system issues
 - **Runtime Errors**: Unexpected exceptions, memory issues
 
 ### 2. Error Recovery
+
 - Graceful degradation for non-critical errors
 - Detailed error messages with suggested fixes
 - Partial generation with warnings when possible
 - Clean rollback on critical failures
 
 ### 3. Logging Strategy
+
 ```typescript
 enum LogLevel {
   ERROR = 0,
   WARN = 1,
   INFO = 2,
-  DEBUG = 3
+  DEBUG = 3,
 }
 ```
 
 ## Performance Considerations
 
 ### 1. Memory Management
+
 - Streaming YAML parsing for large files
 - Lazy loading of templates
 - Garbage collection optimization
 - Memory usage monitoring
 
 ### 2. File System Optimization
+
 - Batch file operations
 - Asynchronous I/O operations
 - Efficient directory traversal
 - Temporary file cleanup
 
 ### 3. Generation Speed
+
 - Template compilation caching
 - Parallel file generation
 - Incremental updates
@@ -282,12 +315,14 @@ enum LogLevel {
 ## Security Considerations
 
 ### 1. Input Validation
+
 - Path traversal prevention
 - File size limitations
 - YAML bomb protection
 - Malicious content detection
 
 ### 2. Output Security
+
 - Safe file creation
 - Permission management
 - Secure template rendering
@@ -296,18 +331,21 @@ enum LogLevel {
 ## Extensibility
 
 ### 1. Plugin Architecture
+
 - Custom parser plugins
 - Generator extensions
 - Template customization
 - Middleware plugins
 
 ### 2. Configuration System
+
 - User configuration files
 - Environment variable support
 - Runtime option overrides
 - Profile-based configurations
 
 ### 3. Future Enhancements
+
 - Multiple REST API framework outputs (FastAPI, Spring Boot, ASP.NET Core)
 - Database integration templates for data APIs
 - Authentication/authorization generators for API security
@@ -318,18 +356,21 @@ enum LogLevel {
 ## Quality Assurance
 
 ### 1. Testing Strategy
+
 - Unit tests for all modules (Jest)
 - Integration tests for CLI commands
 - Template validation tests
 - Generated code quality tests
 
 ### 2. Code Quality
+
 - ESLint with TypeScript rules
 - Prettier for code formatting
 - Husky for pre-commit hooks
 - SonarQube for code analysis
 
 ### 3. Documentation
+
 - JSDoc for code documentation
 - Architecture decision records (ADRs)
 - User guides and tutorials

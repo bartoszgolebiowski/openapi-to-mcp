@@ -1,6 +1,7 @@
 # Phase 4: Mock Data Generation (Week 4)
 
 ### 4.1 Schema-Based Mock Generation
+
 **Duration: 2 days**
 
 - [ ] Implement basic mock data generators for primitive types (JSON/XML compatible)
@@ -11,16 +12,19 @@
 - [ ] Add XML-compatible data generation when specified
 
 **Key Files:**
+
 - `src/generators/mocks/data.ts`
 - `src/generators/mocks/responses.ts`
 
 **Validation Criteria:**
+
 - Generate valid mock data for all schema types in JSON/XML format
 - Handle complex nested structures for REST API responses
 - Respect schema constraints (min/max, patterns)
 - Ensure content-type compatibility
 
 ### 4.2 Response Generation
+
 **Duration: 2 days**
 
 - [ ] Create HTTP response generators for JSON/XML data
@@ -31,16 +35,19 @@
 - [ ] Ensure no HTML content in any responses
 
 **Key Files:**
+
 - `src/generators/mocks/responses.ts`
 - `src/generators/server/routes.ts`
 
 **Validation Criteria:**
+
 - Generate appropriate HTTP responses for data APIs
 - Handle JSON/XML content types correctly
 - Create realistic error responses in JSON format
 - Proper REST status code usage (200, 201, 400, 404, 500, etc.)
 
 ### 4.3 Route Handler Generation
+
 **Duration: 3 days**
 
 - [ ] Generate Express.js route handlers for REST endpoints
@@ -51,10 +58,12 @@
 - [ ] Implement proper HTTP method handling (GET, POST, PUT, DELETE, PATCH)
 
 **Key Files:**
+
 - `src/generators/server/routes.ts`
 - `src/generators/server/middleware.ts`
 
 **Validation Criteria:**
+
 - Generate working Express routes for data APIs
 - Implement basic request validation for JSON payloads
 - Organize routes logically by resource

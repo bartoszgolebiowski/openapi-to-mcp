@@ -1,6 +1,7 @@
 # Phase 1: Project Foundation (Week 1)
 
 ### 1.1 Development Environment Setup
+
 **Duration: 1 day**
 
 - [ ] Initialize project structure according to architecture
@@ -10,11 +11,13 @@
 - [ ] Create initial CI/CD pipeline configuration
 
 **Deliverables:**
+
 - Complete project scaffolding
 - Development environment ready
 - Code quality tools configured
 
 **Tasks:**
+
 ```bash
 # Set up project structure
 mkdir -p src/{cli,parsers,generators,templates,types}
@@ -28,6 +31,7 @@ npm install -D jest @types/jest eslint prettier husky tsx @types/express
 ```
 
 ### 1.2 Core Type Definitions
+
 **Duration: 2 days**
 
 - [ ] Define OpenAPI-specific TypeScript interfaces for REST APIs
@@ -38,12 +42,14 @@ npm install -D jest @types/jest eslint prettier husky tsx @types/express
 - [ ] Create REST method enumeration types
 
 **Key Files:**
+
 - `src/types/openapi.ts`
 - `src/types/cli.ts`
 - `src/types/generator.ts`
 - `src/types/common.ts`
 
 **Validation Criteria:**
+
 - All types compile without errors
 - Type definitions match OpenAPI 3.x specification for REST APIs
 - Content-type filtering types work correctly
@@ -51,6 +57,7 @@ npm install -D jest @types/jest eslint prettier husky tsx @types/express
 - Comprehensive JSDoc documentation
 
 ### 1.3 Basic CLI Interface
+
 **Duration: 2 days**
 
 - [ ] Implement main CLI entry point
@@ -59,11 +66,13 @@ npm install -D jest @types/jest eslint prettier husky tsx @types/express
 - [ ] Implement basic error handling
 
 **Key Files:**
+
 - `src/cli/index.ts`
 - `src/cli/commands/generate.ts`
 - `src/cli/options.ts`
 
 **Validation Criteria:**
+
 - CLI executable from command line
 - Help command displays usage information
 - Version command shows correct version

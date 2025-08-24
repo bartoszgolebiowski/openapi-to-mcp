@@ -1,6 +1,7 @@
 # Phase 2: OpenAPI Parsing (Week 2)
 
 ### 2.1 YAML File Processing
+
 **Duration: 2 days**
 
 - [ ] Implement YAML file reading and parsing
@@ -9,15 +10,18 @@
 - [ ] Implement basic OpenAPI format detection
 
 **Key Files:**
+
 - `src/parsers/utils/yaml.ts`
 - `src/parsers/openapi/validator.ts`
 
 **Validation Criteria:**
+
 - Successfully parse valid OpenAPI YAML files
 - Detect and report YAML syntax errors
 - Handle file not found errors gracefully
 
 ### 2.2 OpenAPI Schema Validation
+
 **Duration: 2 days**
 
 - [ ] Implement OpenAPI 3.x schema validation using AJV for REST APIs
@@ -28,10 +32,12 @@
 - [ ] Validate REST HTTP methods only (GET, POST, PUT, DELETE, PATCH)
 
 **Key Files:**
+
 - `src/parsers/openapi/validator.ts`
 - `src/parsers/openapi/parser.ts`
 
 **Validation Criteria:**
+
 - Validate OpenAPI specification compliance for REST APIs
 - Report specific validation errors with line numbers
 - Handle complex schemas with references
@@ -39,6 +45,7 @@
 - Ensure only REST operations are processed
 
 ### 2.3 Path and Operation Extraction
+
 **Duration: 3 days**
 
 - [ ] Parse REST API paths and HTTP methods (GET, POST, PUT, DELETE, PATCH)
@@ -49,10 +56,12 @@
 - [ ] Extract content-type information for proper response handling
 
 **Key Files:**
+
 - `src/parsers/openapi/extractor.ts`
 - `src/parsers/openapi/types.ts`
 
 **Validation Criteria:**
+
 - Extract all REST endpoints from OpenAPI spec
 - Parse complex parameter definitions for JSON/XML APIs
 - Handle nested schema references
