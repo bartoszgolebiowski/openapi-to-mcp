@@ -7,7 +7,7 @@
 - [ ] Initialize project structure according to architecture
 - [ ] Configure TypeScript with strict settings
 - [ ] Set up package.json with essential dependencies
-- [ ] Configure development tools (ESLint, Prettier, Husky)
+- [ ] Configure development tools (ESLint, Prettier)
 - [ ] Create initial CI/CD pipeline configuration
 
 **Deliverables:**
