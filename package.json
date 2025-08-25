@@ -1,4 +1,5 @@
 {
+  "version": "0.0.1",
   "module": "./dist/index.mjs",
   "exports": {
     "import": {
@@ -8,7 +9,9 @@
   "engines": {
     "node": ">=22.11.0"
   },
+  "type": "module",
   "scripts": {
+    "start": "tsx src/cli/index.ts",
     "build": "pkgroll",
     "test": "vitest",
     "lint": "eslint ./src --ext .ts",
